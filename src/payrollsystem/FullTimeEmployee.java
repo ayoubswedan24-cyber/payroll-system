@@ -1,0 +1,32 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package payrollsystem;
+
+
+import java.time.LocalDate;
+
+public class FullTimeEmployee extends Employee {
+
+    private double allowance;
+
+    public FullTimeEmployee(String id, String name, double baseSalary,
+                            LocalDate joinDate, double allowance) {
+        super(id, name, baseSalary, joinDate);
+        if (allowance < 0) throw new IllegalArgumentException("allowance must be >= 0");
+        this.allowance = allowance;
+    }
+
+    @Override
+    public double calculateNetSalary() {
+        return baseSalary + allowance;
+    }
+
+    @Override
+    public double calculateBonus(double performanceScore) {
+        return baseSalary * 0.10 * performanceScore;
+    }
+}
+
